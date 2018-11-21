@@ -5,3 +5,7 @@
 ## 1.0.0
 
 * Change version and fix description for flutter analysis
+
+## 1.0.1
+
+* Fix description for flutter analysis to long and add dependencies android to Readme
