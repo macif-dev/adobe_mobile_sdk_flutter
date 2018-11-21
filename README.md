@@ -37,10 +37,9 @@ This function is use for set the ADBMobile configuration.
 
 ```dart
     try{
-        String result = await AdobeAnalyticsPlugin.initTrack("ADBMobileConfigCustom.json");
-        print(result); // Result is success
+        await AdobeAnalyticsPlugin.initTrack("ADBMobileConfigCustom.json");
     } on Exception {
-       String  result = 'Failed to init Adobe Tracking';
+       print('Failed to init Adobe Tracking');
     }
 ```
 ### TrackScreen

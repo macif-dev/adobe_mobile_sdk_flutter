@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -12,44 +14,77 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  String _init = "Unknow";
+  String _platformString = "Android";
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
-    initPlatformState();
+    initTrackState();
+    Platform.isIOS ? _platformString = "IOS" : _platformString = "ANDROID";
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await AdobeMobileSdkFlutter.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+  Future<void> initTrackState() async{
+
+    String result;
+    try{
+      await AdobeMobileSdkFlutter.initTrack("ADBMobileConfigCustom.json");
+      result = ("Track is init...");
+    } on Exception {
+      result = 'Failed to init Adobe Tracking';
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
     setState(() {
-      _platformVersion = platformVersion;
+      _init = result;
     });
+
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
-        ),
+          appBar: AppBar(
+            title: const Text('Adobe tracking example app'),
+          ),
+          body: ListView(
+            padding: EdgeInsets.all(16.0),
+            children: <Widget>[
+              Center(
+                child: Text('Status : $_init\n'),
+              ),
+              SizedBox(height: 16.0,),
+              FlatButton(
+                color: Colors.blue,
+                child: Text("Track screen", style: TextStyle(color: Colors.white),),
+                onPressed: (){
+                  print("Track screen...");
+                  AdobeMobileSdkFlutter.trackState("ECRAN_TEST_ADOBE_$_platformString").then((val){
+                    print(val);
+                  });
+                },
+              ),
+              SizedBox(height: 16.0,),
+              FlatButton(
+                color: Colors.blue,
+                child: Text("Track action", style: TextStyle(color: Colors.white)),
+                onPressed: (){
+                  print("Track action...");
+                  try{
+                    AdobeMobileSdkFlutter.trackAction("ACTION_TEST_ADOBE_$_platformString",<String, dynamic>{
+                      "action": "action_test"
+                    }).then((val){
+                      print(val);
+                    });
+                  } on Exception {
+                    setState(() {
+                      _init = 'Failed to track action';
+                    });
+                  }
+                },
+              ),
+            ],
+          )
       ),
     );
   }
