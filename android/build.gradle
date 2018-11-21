@@ -24,6 +24,10 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 27
 
+    dependencies {
+        implementation group: 'com.adobe.mobile', name: 'adobeMobileLibrary', version: '4.17.0'
+    }
+
     defaultConfig {
         minSdkVersion 16
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
