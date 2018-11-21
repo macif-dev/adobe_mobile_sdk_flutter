@@ -14,8 +14,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _init = "Unknow";
-  String _platformString = "Android";
+  String _initMsg = "Unknow";
+  String _platformString = "Unknow";
 
   @override
   void initState(){
@@ -26,17 +26,18 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> initTrackState() async{
 
-    String result;
     try{
       await AdobeMobileSdkFlutter.initTrack("ADBMobileConfigCustom.json");
-      result = ("Track is init...");
+      setState(() {
+        _initMsg = "Track is init...";
+      });
     } on Exception {
-      result = 'Failed to init Adobe Tracking';
+      setState(() {
+        _initMsg = 'Failed to init Adobe Tracking';
+      });
     }
 
-    setState(() {
-      _init = result;
-    });
+
 
   }
 
@@ -51,7 +52,7 @@ class _MyAppState extends State<MyApp> {
             padding: EdgeInsets.all(16.0),
             children: <Widget>[
               Center(
-                child: Text('Status : $_init\n'),
+                child: Text('Status : $_initMsg\n'),
               ),
               SizedBox(height: 16.0,),
               FlatButton(
@@ -78,7 +79,7 @@ class _MyAppState extends State<MyApp> {
                     });
                   } on Exception {
                     setState(() {
-                      _init = 'Failed to track action';
+                      _initMsg = 'Failed to track action';
                     });
                   }
                 },
