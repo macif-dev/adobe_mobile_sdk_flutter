@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -10,7 +11,9 @@ class AdobeMobileSdkFlutter {
   /// Sets the ADBMobileConfig fileName.
   ///
   static Future<String> initTrack(String fileName) async {
-
+    if(Platform.isIOS){
+      return "This function is not supported";
+    }
     final Map<String, dynamic> params = <String, dynamic>{
       "fileName": fileName
     };

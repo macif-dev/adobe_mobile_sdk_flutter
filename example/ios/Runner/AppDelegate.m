@@ -7,6 +7,10 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [GeneratedPluginRegistrant registerWithRegistry:self];
   // Override point for customization after application launch.
+
+  NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ADBMobileConfig" ofType:@"json"];
+  [ADBMobile overrideConfigPath:filePath];
+
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 

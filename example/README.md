@@ -1,8 +1,44 @@
 # adobe_mobile_sdk_flutter_example
 
-Demonstrates how to use the adobe_mobile_sdk_flutter plugin.
+### On iOS
 
-## Getting Started
+* Replace ADBMobileConfig.json in Runner/Runner
+* Call to override function in appDelegate
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+```
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ADBMobileConfig" ofType:@"json"];
+    [ADBMobile overrideConfigPath:filePath];
+```
+### On android
+
+
+# Track function
+
+### TrackScreen
+
+This function is use for track the screen with optional data.
+
+`trackState(String screenName, [Map<String, dynamic> additionalData]);`
+
+```dart
+    String result = await AdobeAnalyticsPlugin.trackState(
+        "SCREEN_NAME",
+        null
+    );
+```
+
+### TrackAction
+
+This function is use for track the action with optional data.
+
+`trackAction(String actionName, [Map<String, dynamic> additionalData]);`
+
+```dart
+    String result = await AdobeAnalyticsPlugin.trackAction(
+        "ACTION_NAME",
+        <String, dynamic>{
+            "action": "ACTION",
+            "category": "TEST"
+        }
+    );
+```

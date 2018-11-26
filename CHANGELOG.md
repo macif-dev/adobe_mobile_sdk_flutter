@@ -9,3 +9,7 @@
 ## 1.0.1
 
 * Fix description for flutter analysis to long and add dependencies android to Readme
+
+## 1.0.2
+
+* Fix override config files for iOS

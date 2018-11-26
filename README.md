@@ -31,7 +31,16 @@ Tip:
 
 ### InitTrack
 
-This function is use for set the ADBMobile configuration.
+This function is use for set the ADBMobile configuration with files.
+
+* On iOS : add ADBConfigFile to appDelegate.m
+
+```
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ADBMobileConfig" ofType:@"json"];
+    [ADBMobile overrideConfigPath:filePath];
+```
+
+* On Android : use initTrack function
 
 `initTrack(String fileName);`
 

@@ -12,10 +12,7 @@
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
   NSDictionary *arguments = call.arguments;
-  if ([@"initTrack" isEqualToString:call.method]) {
-    [self initTrack:call result:result args:arguments];
-  }
-  else if ([@"trackAction" isEqualToString:call.method]) {
+  if ([@"trackAction" isEqualToString:call.method]) {
     [self trackAction:call result:result args:arguments];
   }
   else if ([@"trackState" isEqualToString:call.method]) {
@@ -26,17 +23,6 @@
   }
   else {
     result(FlutterMethodNotImplemented);
-  }
-}
-
-- (void)initTrack:(FlutterMethodCall*)call result:(FlutterResult)result args:(NSDictionary*)args {
-  NSString *fileName = [args objectForKey:@"fileName"];
-
-  if(fileName != nil){
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"json"];
-    [ADBMobile overrideConfigPath:filePath];
-  }else{
-    result([NSString stringWithFormat:@"[ initTrack ERROR ] :: fileName is required"]);
   }
 }
 
@@ -80,7 +66,6 @@
 }
 
 - (void)trackCrash:(FlutterMethodCall*)call result:(FlutterResult)result args:(NSDictionary*)args {
-  NSDictionary *crash = [args objectForKey:@"crash"];
   result([NSString stringWithFormat:@"TrackCrash is not implemented"]);
 }
 
