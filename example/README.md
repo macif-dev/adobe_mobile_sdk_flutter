@@ -3,7 +3,7 @@
 ### On iOS
 
 * Replace ADBMobileConfig.json in Runner/Runner
-* Call to override function in appDelegate
+* Call to override function in appDelegate and import ADBMobile.h
 
 ```
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ADBMobileConfig" ofType:@"json"];

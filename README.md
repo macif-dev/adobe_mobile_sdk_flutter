@@ -33,7 +33,7 @@ Tip:
 
 This function is use for set the ADBMobile configuration with files.
 
-* On iOS : add ADBConfigFile to appDelegate.m
+* On iOS : add ADBConfigFile to appDelegate.m and import ADBMobile.h
 
 ```
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ADBMobileConfig" ofType:@"json"];
