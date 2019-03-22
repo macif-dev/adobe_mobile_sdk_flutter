@@ -15,7 +15,7 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'AdobeMobileSDK'
+  s.dependency 'AdobeMobileSDK', '4.18.1'
 
   s.ios.deployment_target = '8.0'
 end

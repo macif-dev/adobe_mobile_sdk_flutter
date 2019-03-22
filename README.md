@@ -89,5 +89,5 @@ See the `example` directory for a complete sample app using adobe_plugin_flutter
 | Plugin | Links |
 | ------ | ------ |
 | AdobeMobileSDK iOS | https://cocoapods.org/pods/AdobeMobileSDK |
-| AdobeMobileSDK android | https://mvnrepository.com/artifact/com.adobe.mobile/adobeMobileLibrary/4.17.0 |
+| AdobeMobileSDK android | https://mvnrepository.com/artifact/com.adobe.mobile/adobeMobileLibrary/4.17.2 |
 

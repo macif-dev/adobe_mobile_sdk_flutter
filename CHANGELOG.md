@@ -13,3 +13,7 @@
 ## 1.0.2
 
 * Fix override config files for iOS
+
+## 1.0.3
+
+* Update dependency AdobeMobileSDK to 4.17.2 Android and 4.18.1 iOS

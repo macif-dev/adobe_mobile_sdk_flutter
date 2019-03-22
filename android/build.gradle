@@ -25,7 +25,7 @@ android {
     compileSdkVersion 27
 
     dependencies {
-        implementation group: 'com.adobe.mobile', name: 'adobeMobileLibrary', version: '4.17.0'
+        implementation group: 'com.adobe.mobile', name: 'adobeMobileLibrary', version: '4.17.2'
     }
 
     defaultConfig {
