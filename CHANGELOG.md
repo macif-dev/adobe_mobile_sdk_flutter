@@ -17,3 +17,7 @@
 ## 1.0.3
 
 * Update dependency AdobeMobileSDK to 4.17.2 Android and 4.18.1 iOS
+
+## 1.0.4
+
+* Fix additional data map was always null
