@@ -72,15 +72,15 @@ public class AdobeMobileSdkFlutterPlugin implements MethodCallHandler {
 
   public void handlerTrackAction(MethodCall call, Result result) throws Exception {
     String actionName = call.argument("actionName");
-    Map<String, Object> additionnalData = call.argument("additionnalData");
-    Analytics.trackAction(actionName, additionnalData);
+    Map<String, Object> additionalData = call.argument("additionalData");
+    Analytics.trackAction(actionName, additionalData);
     result.success("trackAction [" + actionName + "]");
   }
 
   public void handlerTrackState(MethodCall call, Result result) throws Exception {
     String screenName = call.argument("screenName");
-    Map<String, Object> additionnalData = call.argument("additionnalData");
-    Analytics.trackState(screenName, additionnalData);
+    Map<String, Object> additionalData = call.argument("additionalData");
+    Analytics.trackState(screenName, additionalData);
     result.success("screenName [" + screenName + "]");
   }
 }
