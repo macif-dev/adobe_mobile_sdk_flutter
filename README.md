@@ -33,14 +33,27 @@ Tip:
 
 This function is use for set the ADBMobile configuration with files.
 
-* On iOS : add ADBConfigFile to appDelegate.m and import ADBMobile.h
+* On iOS : 
+
+1. add ADBConfigFile to `appDelegate.m` and `import ADBMobile.h`
 
 ```
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ADBMobileConfig" ofType:@"json"];
     [ADBMobile overrideConfigPath:filePath];
 ```
 
-* On Android : use initTrack function
+2. add to `Info.plist` :
+
+```
+<key>NSAppTransportSecurity</key>
+<dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+</dict>
+```
+
+
+* On Android : use `initTrack` function
 
 `initTrack(String fileName);`
 
