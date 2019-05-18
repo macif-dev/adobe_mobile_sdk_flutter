@@ -33,7 +33,7 @@
     [self sendTrack:actionName additionalData:additionalData isState:false];
     result([NSString stringWithFormat:@"trackAction [%@]", actionName]);
   }else{
-    result([FlutterError errorWithCode:@"[ trackAction ERROR ] :: actionName is required", message: @"actionName is required", details: nil]);
+    result([FlutterError errorWithCode:@"[ trackAction ERROR ] :: actionName is required" message: @"actionName is required" details: nil]);
   }
 }
 
@@ -44,7 +44,7 @@
     [self sendTrack:screenName additionalData:additionalData isState:true];
     result([NSString stringWithFormat:@"screenName [%@]", screenName]);
   }else{
-    result([FlutterError errorWithCode:@"[ trackState ERROR ] :: screenName is required", message: @"screenName is required", details: nil]);
+    result([FlutterError errorWithCode:@"[ trackState ERROR ] :: screenName is required" message: @"screenName is required" details: nil]);
   }
 }
 
