@@ -31,8 +31,9 @@
   if(actionName != nil ){
     NSDictionary *additionalData = [args objectForKey:@"additionalData"];
     [self sendTrack:actionName additionalData:additionalData isState:false];
+    result([NSString stringWithFormat:@"trackAction [%@]", actionName]);
   }else{
-    result([NSString stringWithFormat:@"[ trackAction ERROR ] :: actionName is required"]);
+    result([FlutterError errorWithCode:@"[ trackAction ERROR ] :: actionName is required" message: @"actionName is required" details: nil]);
   }
 }
 
@@ -41,8 +42,9 @@
   if(screenName != nil ){
     NSDictionary *additionalData = [args objectForKey:@"additionalData"];
     [self sendTrack:screenName additionalData:additionalData isState:true];
+    result([NSString stringWithFormat:@"screenName [%@]", screenName]);
   }else{
-    result([NSString stringWithFormat:@"[ trackState ERROR ] :: screenName is required"]);
+    result([FlutterError errorWithCode:@"[ trackState ERROR ] :: screenName is required" message: @"screenName is required" details: nil]);
   }
 }
 
