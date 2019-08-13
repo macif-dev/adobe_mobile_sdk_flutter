@@ -22,15 +22,15 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     dependencies {
-        implementation group: 'com.adobe.mobile', name: 'adobeMobileLibrary', version: '4.17.5'
+        implementation group: 'com.adobe.mobile', name: 'adobeMobileLibrary', version: '4.17.9'
     }
 
     defaultConfig {
         minSdkVersion 16
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
         disable 'InvalidPackage'
