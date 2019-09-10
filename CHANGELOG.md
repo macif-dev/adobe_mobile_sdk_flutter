@@ -26,3 +26,8 @@
 
 * Update dependency AdobeMobileSDK to 4.17.5 Android and 4.18.3 iOS
 * Fix iOS response 
+
+## 1.0.6
+
+* Update dependency AdobeMobileSDK to 4.17.9 Android and 4.18.7 iOS
+* Upgrade to work with androidx
