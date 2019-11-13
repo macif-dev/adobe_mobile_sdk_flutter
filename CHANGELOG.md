@@ -31,3 +31,8 @@
 
 * Update dependency AdobeMobileSDK to 4.17.9 Android and 4.18.7 iOS
 * Upgrade to work with androidx
+
+## 1.1.0
+
+* Update dependency AdobeMobileSDK to 4.17.10 Android and 4.18.9 iOS
+* Enabled iOS bitcode
