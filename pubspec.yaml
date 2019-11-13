@@ -1,11 +1,11 @@
 name: adobe_mobile_sdk_flutter
 description: A plugin flutter for use Adobe Mobile services provides a new UI that brings together mobile marketing capabilities for mobile applications from across the Adobe Experience Cloud.
-version: 1.0.6
+version: 1.1.0
 author: Macif <contact.appmobile@macif.fr>
 homepage: https://github.com/macif-dev/adobe_mobile_sdk_flutter
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter:
