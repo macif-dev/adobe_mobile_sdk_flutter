@@ -4,7 +4,7 @@
 Pod::Spec.new do |s|
   s.name             = 'adobe_mobile_sdk_flutter'
   s.version          = '0.0.1'
-  s.summary          = 'A new flutter plugin project.'
+  s.summary          = 'Adobe mobile SDK flutte'
   s.description      = <<-DESC
 A new flutter plugin project.
                        DESC
@@ -15,7 +15,7 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'AdobeMobileSDK', '4.18.7'
+  s.dependency 'AdobeMobileSDK', '4.18.9'
 
   s.ios.deployment_target = '8.0'
 end
