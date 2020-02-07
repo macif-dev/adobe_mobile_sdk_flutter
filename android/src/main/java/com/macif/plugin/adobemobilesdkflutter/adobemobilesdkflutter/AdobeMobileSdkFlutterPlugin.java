@@ -66,21 +66,13 @@ public class AdobeMobileSdkFlutterPlugin implements MethodCallHandler {
   }
 
   public void handlerCollectLifecycle(MethodCall call, Result result) throws Exception {
-    try {
-      Config.collectLifecycleData();
-      result.success("Collect lifecycle data");
-    } catch (IOException ex) {
-      result.error("File not found", ex.getMessage(), ex.getStackTrace());
-    }
+    Config.collectLifecycleData();
+    result.success("Collect lifecycle data");
   }
 
   public void handlerPauseLifecycle(MethodCall call, Result result) throws Exception {
-    try {
-      Config.pauseCollectingLifecycleData();
-      result.success("Pause lifecycle data");
-    } catch (IOException ex) {
-      result.error("File not found", ex.getMessage(), ex.getStackTrace());
-    }
+    Config.pauseCollectingLifecycleData();
+    result.success("Pause lifecycle data");
   }
 
 
