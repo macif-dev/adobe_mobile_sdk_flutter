@@ -8,6 +8,36 @@ class AdobeMobileSdkFlutter {
   static const MethodChannel _channel = const MethodChannel('adobe_analytics_plugin');
 
   ///
+  /// Collection Lifecycle...
+  ///
+  static Future<String> collectLifecycle() async {
+    if(Platform.isIOS){
+      return "This function is not supported";
+    }
+    final Map<String, dynamic> params = <String, dynamic>{
+      "data": null
+    };
+    String response = await _channel.invokeMethod('collectLifecycleData', null);
+
+    return response;
+  }
+
+  ///
+  ///  Pause Lifecycle...
+  ///
+  static Future<String> pauseLifecycle() async {
+    if(Platform.isIOS){
+      return "This function is not supported";
+    }
+    final Map<String, dynamic> params = <String, dynamic>{
+      "data": null
+    };
+    String response = await _channel.invokeMethod('pauseLifecycleData', null);
+
+    return response;
+  }
+
+  ///
   /// Sets the ADBMobileConfig fileName.
   ///
   static Future<String> initTrack(String fileName) async {
