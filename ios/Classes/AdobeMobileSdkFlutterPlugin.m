@@ -31,7 +31,7 @@
 }
 
 - (void)collectLifecycle:(FlutterMethodCall*)call result:(FlutterResult)result {
-  [ADBMobile collectLifecycle];
+  [ADBMobile collectLifecycleData];
   result([NSString stringWithFormat:@"collectLifecycle called"]);
 }
 
