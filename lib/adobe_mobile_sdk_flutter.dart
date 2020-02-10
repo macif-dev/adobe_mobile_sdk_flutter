@@ -4,21 +4,13 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 
 class AdobeMobileSdkFlutter {
-
   static const MethodChannel _channel = const MethodChannel('adobe_analytics_plugin');
 
   ///
   /// Collection Lifecycle...
   ///
   static Future<String> collectLifecycle() async {
-    if(Platform.isIOS){
-      return "This function is not supported";
-    }
-    final Map<String, dynamic> params = <String, dynamic>{
-      "data": null
-    };
     String response = await _channel.invokeMethod('collectLifecycleData', null);
-
     return response;
   }
 
@@ -26,14 +18,10 @@ class AdobeMobileSdkFlutter {
   ///  Pause Lifecycle...
   ///
   static Future<String> pauseLifecycle() async {
-    if(Platform.isIOS){
+    if (Platform.isIOS) {
       return "This function is not supported";
     }
-    final Map<String, dynamic> params = <String, dynamic>{
-      "data": null
-    };
     String response = await _channel.invokeMethod('pauseLifecycleData', null);
-
     return response;
   }
 
@@ -41,12 +29,10 @@ class AdobeMobileSdkFlutter {
   /// Sets the ADBMobileConfig fileName.
   ///
   static Future<String> initTrack(String fileName) async {
-    if(Platform.isIOS){
+    if (Platform.isIOS) {
       return "This function is not supported";
     }
-    final Map<String, dynamic> params = <String, dynamic>{
-      "fileName": fileName
-    };
+    final Map<String, dynamic> params = <String, dynamic>{"fileName": fileName};
 
     String response = await _channel.invokeMethod('initTrack', params);
 
@@ -66,8 +52,8 @@ class AdobeMobileSdkFlutter {
       "actionName": actionName,
     };
 
-    if(additionalData != null){
-      params.addAll({"additionalData" : additionalData});
+    if (additionalData != null) {
+      params.addAll({"additionalData": additionalData});
     }
 
     String response = await _channel.invokeMethod('trackAction', params);
@@ -84,17 +70,14 @@ class AdobeMobileSdkFlutter {
   /// [additionalData] is optional because it allows to add information about the tracks
   ///
   static Future<String> trackState(String screenName, [Map<String, dynamic> additionalData]) async {
-    final Map<String, dynamic> params = <String, dynamic>{
-      "screenName": screenName
-    };
+    final Map<String, dynamic> params = <String, dynamic>{"screenName": screenName};
 
-    if(additionalData != null){
-      params.addAll({"additionalData" : additionalData});
+    if (additionalData != null) {
+      params.addAll({"additionalData": additionalData});
     }
 
     String response = await _channel.invokeMethod('trackState', params);
 
     return response;
   }
-
 }

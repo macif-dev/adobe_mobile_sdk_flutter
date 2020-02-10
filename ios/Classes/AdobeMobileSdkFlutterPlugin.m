@@ -12,7 +12,11 @@
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
   NSDictionary *arguments = call.arguments;
-  if ([@"trackAction" isEqualToString:call.method]) {
+
+  if ([@"collectLifecycleData" isEqualToString:call.method]) {
+    [self collectLifecycle:call result:result];
+  }
+  else if ([@"trackAction" isEqualToString:call.method]) {
     [self trackAction:call result:result args:arguments];
   }
   else if ([@"trackState" isEqualToString:call.method]) {
@@ -24,6 +28,11 @@
   else {
     result(FlutterMethodNotImplemented);
   }
+}
+
+- (void)collectLifecycle:(FlutterMethodCall*)call result:(FlutterResult)result {
+  [ADBMobile collectLifecycle];
+  result([NSString stringWithFormat:@"collectLifecycle called"]);
 }
 
 - (void)trackAction:(FlutterMethodCall*)call result:(FlutterResult)result args:(NSDictionary*)args {
