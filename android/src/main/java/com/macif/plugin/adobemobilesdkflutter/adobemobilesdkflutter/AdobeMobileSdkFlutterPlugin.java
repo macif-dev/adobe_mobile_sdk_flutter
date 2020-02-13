@@ -1,68 +1,86 @@
 package com.macif.plugin.adobemobilesdkflutter.adobemobilesdkflutter;
 
-import android.app.Activity;
+import android.content.Context;
 
+import com.adobe.mobile.Analytics;
+import com.adobe.mobile.Config;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
-import com.adobe.mobile.*;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Map;
-
-
 /**
  * AdobeMobileSdkFlutterPlugin
  */
-public class AdobeMobileSdkFlutterPlugin implements MethodCallHandler {
+public class AdobeMobileSdkFlutterPlugin implements MethodCallHandler, FlutterPlugin {
 
-  private final Activity activity;
+  private Context applicationContext;
 
-  private AdobeMobileSdkFlutterPlugin(Activity activity) {
-    this.activity = activity;
+  public AdobeMobileSdkFlutterPlugin() {
+  }
+
+  private void initialize(Context context) {
+    applicationContext = context.getApplicationContext();
+    Config.setContext(applicationContext);
+    Config.setDebugLogging(false);
   }
 
   /**
    * Plugin registration.
    */
   public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "adobe_analytics_plugin");
-    channel.setMethodCallHandler(new AdobeMobileSdkFlutterPlugin(registrar.activity()));
+    final AdobeMobileSdkFlutterPlugin instance = new AdobeMobileSdkFlutterPlugin();
+    instance.initialize(registrar.activeContext());
 
-    Config.setContext(registrar.activeContext());
-    Config.setDebugLogging(false);
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "adobe_analytics_plugin");
+    channel.setMethodCallHandler(instance);
   }
 
   @Override
   public void onMethodCall(MethodCall call, Result result) {
     try {
       switch (call.method) {
-        case "initTrack":
-          handlerInitTrack(call, result);
-          break;
-        case "trackAction":
-          handlerTrackAction(call, result);
-          break;
-        case "trackState":
-          handlerTrackState(call, result);
-          break;
-        default:
-          result.notImplemented();
-          break;
+      case "initTrack":
+        handlerInitTrack(call, result);
+        break;
+      case "trackAction":
+        handlerTrackAction(call, result);
+        break;
+      case "trackState":
+        handlerTrackState(call, result);
+        break;
+      default:
+        result.notImplemented();
+        break;
       }
     } catch (Exception e) {
       result.error("Error", e.getMessage(), e.getStackTrace());
     }
   }
 
+  @Override
+  public void onAttachedToEngine(FlutterPluginBinding binding) {
+    initialize(binding.getApplicationContext());
+    final MethodChannel channel = new MethodChannel(binding.getBinaryMessenger(), "adobe_analytics_plugin");
+    channel.setMethodCallHandler(this);
+  }
+
+  @Override
+  public void onDetachedFromEngine(FlutterPluginBinding binding) {
+    this.applicationContext = null;
+  }
+
   public void handlerInitTrack(MethodCall call, Result result) throws Exception {
     try {
       String fileName = call.argument("fileName").toString();
-      InputStream configInput = activity.getAssets().open(fileName);
+      InputStream configInput = applicationContext.getAssets().open(fileName);
       Config.overrideConfigStream(configInput);
       result.success("Init with config [" + fileName + "]");
     } catch (IOException ex) {
