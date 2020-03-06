@@ -36,3 +36,10 @@
 
 * Update dependency AdobeMobileSDK to 4.17.10 Android and 4.18.9 iOS
 * Enabled iOS bitcode
+
+## 1.2.0
+
+* Update dependency AdobeMobileSDK to 4.18.0 Android and 4.19.0 iOS
+* Upgrade to new Flutter Plugin API V2 (https://github.com/nodinosaur)
+* Add Lifecycle collection data (https://github.com/nodinosaur)
+* Android X
