@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:adobe_mobile_sdk_flutter/adobe_mobile_sdk_flutter.dart';
 
 void main() => runApp(MyApp());
@@ -18,15 +17,14 @@ class _MyAppState extends State<MyApp> {
   String _platformString = "Unknow";
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     initTrackState();
     Platform.isIOS ? _platformString = "IOS" : _platformString = "ANDROID";
   }
 
-  Future<void> initTrackState() async{
-
-    try{
+  Future<void> initTrackState() async {
+    try {
       await AdobeMobileSdkFlutter.initTrack("ADBMobileConfigCustom.json");
       setState(() {
         _initMsg = "Track is init...";
@@ -36,9 +34,6 @@ class _MyAppState extends State<MyApp> {
         _initMsg = 'Failed to init Adobe Tracking';
       });
     }
-
-
-
   }
 
   @override
@@ -54,27 +49,34 @@ class _MyAppState extends State<MyApp> {
               Center(
                 child: Text('Status : $_initMsg\n'),
               ),
-              SizedBox(height: 16.0,),
-              FlatButton(
-                color: Colors.blue,
-                child: Text("Track screen", style: TextStyle(color: Colors.white),),
-                onPressed: (){
+              SizedBox(
+                height: 16.0,
+              ),
+              OutlinedButton(
+                child: Text(
+                  "Track screen",
+                  style: TextStyle(color: Colors.blue),
+                ),
+                onPressed: () {
                   print("Track screen...");
-                  AdobeMobileSdkFlutter.trackState("ECRAN_TEST_ADOBE_$_platformString").then((val){
+                  AdobeMobileSdkFlutter.trackState(
+                          "ECRAN_TEST_ADOBE_$_platformString")
+                      .then((val) {
                     print(val);
                   });
                 },
               ),
-              SizedBox(height: 16.0,),
-              FlatButton(
-                color: Colors.blue,
-                child: Text("Track action", style: TextStyle(color: Colors.white)),
-                onPressed: (){
-                  print("Track action...");
-                  try{
-                    AdobeMobileSdkFlutter.trackAction("ACTION_TEST_ADOBE_$_platformString",<String, dynamic>{
-                      "action": "action_test"
-                    }).then((val){
+              SizedBox(
+                height: 16.0,
+              ),
+              OutlinedButton(
+                child:
+                    Text("Track action", style: TextStyle(color: Colors.blue)),
+                onPressed: () {
+                  try {
+                    AdobeMobileSdkFlutter.trackAction(
+                        "ACTION_TEST_ADOBE_$_platformString",
+                        <String, dynamic>{"action": "action_test"}).then((val) {
                       print(val);
                     });
                   } on Exception {
@@ -85,8 +87,7 @@ class _MyAppState extends State<MyApp> {
                 },
               ),
             ],
-          )
-      ),
+          )),
     );
   }
 }

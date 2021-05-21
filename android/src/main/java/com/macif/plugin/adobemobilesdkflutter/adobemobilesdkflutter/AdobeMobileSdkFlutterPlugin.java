@@ -23,8 +23,7 @@ public class AdobeMobileSdkFlutterPlugin implements MethodCallHandler, FlutterPl
 
     private Context applicationContext;
 
-    public AdobeMobileSdkFlutterPlugin() {
-    }
+    private static final String CHANNEL = "adobe_analytics_plugins";
 
     private void initialize(Context context) {
         applicationContext = context.getApplicationContext();
@@ -39,7 +38,7 @@ public class AdobeMobileSdkFlutterPlugin implements MethodCallHandler, FlutterPl
         final AdobeMobileSdkFlutterPlugin instance = new AdobeMobileSdkFlutterPlugin();
         instance.initialize(registrar.activeContext());
 
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "adobe_analytics_plugin");
+        final MethodChannel channel = new MethodChannel(registrar.messenger(), CHANNEL);
         channel.setMethodCallHandler(instance);
     }
 

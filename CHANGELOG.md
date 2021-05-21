@@ -43,3 +43,9 @@
 * Upgrade to new Flutter Plugin API V2 (https://github.com/nodinosaur)
 * Add Lifecycle collection data (https://github.com/nodinosaur)
 * Android X
+
+## 2.0.0
+
+* Update to nullsafety
+* Change example project to flutter embbeded 2
+* Update dependency AdobeMobileSDK to 4.18.0 Android and 4.21.2 iOS

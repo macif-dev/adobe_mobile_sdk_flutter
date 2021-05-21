@@ -4,7 +4,8 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 
 class AdobeMobileSdkFlutter {
-  static const MethodChannel _channel = const MethodChannel('adobe_analytics_plugin');
+  static const MethodChannel _channel =
+      const MethodChannel('adobe_analytics_plugin');
 
   ///
   /// Collection Lifecycle...
@@ -47,7 +48,8 @@ class AdobeMobileSdkFlutter {
   ///
   /// [additionalData] is optional because it allows to add information about the tracks
   ///
-  static Future<String> trackAction(String actionName, [Map<String, dynamic> additionalData]) async {
+  static Future<String> trackAction(String actionName,
+      [Map<String, dynamic>? additionalData]) async {
     final Map<String, dynamic> params = <String, dynamic>{
       "actionName": actionName,
     };
@@ -69,8 +71,11 @@ class AdobeMobileSdkFlutter {
   ///
   /// [additionalData] is optional because it allows to add information about the tracks
   ///
-  static Future<String> trackState(String screenName, [Map<String, dynamic> additionalData]) async {
-    final Map<String, dynamic> params = <String, dynamic>{"screenName": screenName};
+  static Future<String> trackState(String screenName,
+      [Map<String, dynamic>? additionalData]) async {
+    final Map<String, dynamic> params = <String, dynamic>{
+      "screenName": screenName
+    };
 
     if (additionalData != null) {
       params.addAll({"additionalData": additionalData});
